@@ -1,20 +1,16 @@
-name: Environment Variables Lab
+name: Secrets Lab
 
 on:
   workflow_dispatch:
 
-env:
-  APP_NAME: GitHubActionsLab
-  ENVIRONMENT: UAT
-  OWNER: DPK
-
 jobs:
-  env-demo:
+  secret-demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Display Variables
+      - name: Read Secret
         run: |
-          echo "Application: $APP_NAME"
-          echo "Environment: $ENVIRONMENT"
-          echo "Owner: $OWNER"
+          echo "Secret Loaded Successfully"
+
+        env:
+          MY_SECRET: ${{ secrets.TEST_SECRET }}
