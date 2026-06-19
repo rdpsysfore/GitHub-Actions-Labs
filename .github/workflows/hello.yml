@@ -1,17 +1,24 @@
-name: Hello Workflow
+name: Checkout Lab
 
 on:
   workflow_dispatch:
 
 jobs:
-  hello:
+  checkout-test:
     runs-on: ubuntu-latest
 
     steps:
-      - run: pwd
+      - name: Show Files Before Checkout
+        run: |
+          echo "Before Checkout"
+          pwd
+          ls -la
 
-      - run: whoami
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - run: hostname
-
-      - run: date
+      - name: Show Files After Checkout
+        run: |
+          echo "After Checkout"
+          pwd
+          ls -la
