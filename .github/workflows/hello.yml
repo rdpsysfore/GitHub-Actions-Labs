@@ -1,4 +1,3 @@
-
 name: Hello Workflow
 
 on:
@@ -9,11 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: echo "Hello GitHub Actions"
+      - run: pwd
 
+      - run: whoami
 
+      - run: hostname
 
-
-
-
-
+      - run: date
