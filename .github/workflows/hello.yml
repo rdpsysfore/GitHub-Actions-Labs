@@ -1,19 +1,24 @@
-name: Push Trigger Lab
+name: Workflow Input Lab
 
 on:
-  push:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select Environment"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - uat
+          - prod
 
 jobs:
-  push-demo:
+  show-input:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show Trigger Information
+      - name: Display Selected Environment
         run: |
-          echo "Workflow triggered by push event"
-
-      - name: Display GitHub Information
-        run: |
-          echo "Repository: ${{ github.repository }}"
-          echo "Branch: ${{ github.ref }}"
-          echo "Triggered By: ${{ github.actor }}"
+          echo "Selected Environment:"
+          echo "${{ github.event.inputs.environment }}"
