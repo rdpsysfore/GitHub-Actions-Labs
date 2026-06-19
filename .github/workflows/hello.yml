@@ -1,24 +1,20 @@
-name: Workflow Input Lab
+name: Environment Variables Lab
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: "Select Environment"
-        required: true
-        default: "dev"
-        type: choice
-        options:
-          - dev
-          - uat
-          - prod
+
+env:
+  APP_NAME: GitHubActionsLab
+  ENVIRONMENT: Dev
+  OWNER: DPK
 
 jobs:
-  show-input:
+  env-demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Display Selected Environment
+      - name: Display Variables
         run: |
-          echo "Selected Environment:"
-          echo "${{ github.event.inputs.environment }}"
+          echo "Application: $APP_NAME"
+          echo "Environment: $ENVIRONMENT"
+          echo "Owner: $OWNER"
