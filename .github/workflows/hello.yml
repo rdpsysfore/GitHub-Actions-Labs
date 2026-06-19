@@ -1,24 +1,19 @@
-name: Checkout Lab
+name: Push Trigger Lab
 
 on:
-  workflow_dispatch:
+  push:
 
 jobs:
-  checkout-test:
+  push-demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show Files Before Checkout
+      - name: Show Trigger Information
         run: |
-          echo "Before Checkout"
-          pwd
-          ls -la
+          echo "Workflow triggered by push event"
 
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Show Files After Checkout
+      - name: Display GitHub Information
         run: |
-          echo "After Checkout"
-          pwd
-          ls -la
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Triggered By: ${{ github.actor }}"
