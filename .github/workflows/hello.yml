@@ -1,4 +1,4 @@
-name: Expression Lab
+name: Composite Action Lab
 
 on:
   workflow_dispatch:
@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: |
-          echo "User: ${{ github.actor }}"
-          echo "Repository: ${{ github.repository }}"
+      - uses: actions/checkout@v4
+
+      - name: Run Custom Action
+        uses: ./.github/actions/hello-action
