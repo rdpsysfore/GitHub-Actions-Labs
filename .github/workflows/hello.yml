@@ -8,4 +8,4 @@ jobs:
     uses: ./.github/workflows/common.yml
 
     with:
-      environment: dev
+      environment: testing
