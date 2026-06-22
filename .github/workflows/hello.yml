@@ -1,33 +1,19 @@
-name: Artifact Download Lab
+name: Matrix Lab
 
 on:
   workflow_dispatch:
 
 jobs:
-  create:
-    runs-on: ubuntu-latest
+  test:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - windows-latest
+          - macos-latest
+
+    runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Create File
-        run: |
-          echo "GitHub Actions Artifact" > output.txt
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: demo-file
-          path: output.txt
-
-  consume:
-    needs: create
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: demo-file
-
-      - name: Read File
-        run: |
-          cat output.txt
+      - name: Display OS
+        run: echo "Running on ${{ matrix.os }}"
