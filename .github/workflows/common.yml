@@ -2,12 +2,16 @@ name: Common Workflow
 
 on:
   workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Common Step
+      - name: Show Environment
         run: |
-          echo "Executing Common Workflow"
+          echo "Environment: ${{ inputs.environment }}"
