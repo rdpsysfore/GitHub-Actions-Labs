@@ -1,0 +1,14 @@
+name: Composite Action Lab
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Custom Action
+        uses: ./.github/actions/hello-action
