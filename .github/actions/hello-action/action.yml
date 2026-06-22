@@ -1,14 +1,10 @@
-name: Composite Action Lab
+name: Hello Action
 
-on:
-  workflow_dispatch:
+description: My First Composite Action
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
+runs:
+  using: composite
 
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Run Custom Action
-        uses: ./.github/actions/hello-action
+  steps:
+    - run: echo "Hello From Composite Action"
+      shell: bash
