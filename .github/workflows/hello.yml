@@ -1,20 +1,8 @@
-name: Environment Matrix
+name: Caller Workflow
 
 on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    strategy:
-      matrix:
-        environment:
-          - dev
-          - uat
-          - prod
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - run: |
-          echo "Deploying to ${{ matrix.environment }}"
-          
+  call-common:
+    uses: ./.github/workflows/common.yml
