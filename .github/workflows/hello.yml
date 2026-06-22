@@ -1,4 +1,4 @@
-name: Outputs Lab
+name: Job Output Lab
 
 on:
   workflow_dispatch:
@@ -11,10 +11,16 @@ jobs:
       version: ${{ steps.generate.outputs.version }}
 
     steps:
-      - name: Generate Version
-        id: generate
-
+      - id: generate
         run: |
           echo "version=v1.0.0" >> $GITHUB_OUTPUT
 
-      - run: echo "Version Created"
+  deploy:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: |
+          echo "Deploying Version:"
+          echo "${{ needs.build.outputs.version }}"
