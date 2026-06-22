@@ -6,3 +6,6 @@ on:
 jobs:
   call-common:
     uses: ./.github/workflows/common.yml
+
+    with:
+      environment: dev
