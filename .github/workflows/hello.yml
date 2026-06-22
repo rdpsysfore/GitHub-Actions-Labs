@@ -1,21 +1,20 @@
-name: Input Condition Lab
+name: If Condition Lab
 
 on:
   workflow_dispatch:
-    inputs:
-      deploy:
-        description: "Deploy Application?"
-        required: true
-        type: boolean
 
 jobs:
-  deploy-job:
+  condition-demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy
-        if: github.event.inputs.deploy == 'true'
-        run: |
-          echo "Deploying Application"
+      - name: Step 1
+        run: echo "This always runs"
 
-          
+      - name: Step 2
+        if: true
+        run: echo "Condition is True"
+
+      - name: Step 3
+        if: false
+        run: echo "You should never see this"
