@@ -8,12 +8,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Create File
+      - name: Create Folder
         run: |
-          echo "Hello from GitHub Actions" > report.txt
+          mkdir reports
+          echo "Report1" > reports/report1.txt
+          echo "Report2" > reports/report2.txt
 
-      - name: Upload Artifact
+      - name: Upload Folder
         uses: actions/upload-artifact@v4
         with:
-          name: my-report
-          path: report.txt
+          name: reports-folder
+          path: reports/
