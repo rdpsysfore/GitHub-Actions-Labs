@@ -1,23 +1,20 @@
-name: Multi Matrix Lab
+name: Environment Matrix
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
+  deploy:
     strategy:
       matrix:
-        os:
-          - ubuntu-latest
-          - windows-latest
+        environment:
+          - dev
+          - uat
+          - prod
 
-        java:
-          - 17
-          - 21
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - run: |
-          echo "OS: ${{ matrix.os }}"
-          echo "Java: ${{ matrix.java }}"
+          echo "Deploying to ${{ matrix.environment }}"
+          
