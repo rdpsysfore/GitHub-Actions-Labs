@@ -1,26 +1,13 @@
-name: Job Output Lab
+name: Expression Lab
 
 on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    outputs:
-      version: ${{ steps.generate.outputs.version }}
-
-    steps:
-      - id: generate
-        run: |
-          echo "version=v1.0.0" >> $GITHUB_OUTPUT
-
-  deploy:
-    needs: build
-
+  test:
     runs-on: ubuntu-latest
 
     steps:
       - run: |
-          echo "Deploying Version:"
-          echo "${{ needs.build.outputs.version }}"
+          echo "User: ${{ github.actor }}"
+          echo "Repository: ${{ github.repository }}"
