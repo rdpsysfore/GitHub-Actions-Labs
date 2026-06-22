@@ -11,4 +11,4 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run Custom Action
-        uses: ./.github/actions/hello-action/action.yml
+        uses: ./.github/actions/hello-action
