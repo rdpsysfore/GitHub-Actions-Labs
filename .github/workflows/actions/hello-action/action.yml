@@ -1,0 +1,10 @@
+name: Hello Action
+
+description: My First Composite Action
+
+runs:
+  using: composite
+
+  steps:
+    - run: echo "Hello From Composite Action"
+      shell: bash
