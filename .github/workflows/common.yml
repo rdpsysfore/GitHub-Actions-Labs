@@ -1,0 +1,13 @@
+name: Common Workflow
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Common Step
+        run: |
+          echo "Executing Common Workflow"
