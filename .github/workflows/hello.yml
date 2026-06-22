@@ -1,20 +1,19 @@
-name: If Condition Lab
+name: Artifact Upload Lab
 
 on:
   workflow_dispatch:
 
 jobs:
-  condition-demo:
+  upload-demo:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Step 1
-        run: echo "This always runs"
+      - name: Create File
+        run: |
+          echo "Hello from GitHub Actions" > report.txt
 
-      - name: Step 2
-        if: true
-        run: echo "Condition is True"
-
-      - name: Step 3
-        if: false
-        run: echo "You should never see this"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-report
+          path: report.txt
