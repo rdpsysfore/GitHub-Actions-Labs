@@ -1,19 +1,19 @@
-name: Matrix Lab
+name: Java Matrix
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
+  java-test:
     strategy:
       matrix:
-        os:
-          - ubuntu-latest
-          - windows-latest
-          - macos-latest
+        java:
+          - 17
+          - 21
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Display OS
-        run: echo "Running on ${{ matrix.os }}"
+      - name: Display Java Version
+        run: |
+          echo "Testing Java ${{ matrix.java }}"
