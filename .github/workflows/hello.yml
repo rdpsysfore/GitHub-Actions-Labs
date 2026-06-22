@@ -1,33 +1,19 @@
-name: Job Dependencies Lab
+name: Input Condition Lab
 
 on:
   workflow_dispatch:
+    inputs:
+      deploy:
+        description: "Deploy Application?"
+        required: true
+        type: boolean
 
 jobs:
-  build:
+  deploy-job:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Build Step
-        run: |
-          echo "Building Application"
-          sleep 10
-
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Test Step
-        run: |
-          echo "Running Tests"
-          sleep 10
-
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Deploy Step
+      - name: Deploy
+        if: github.event.inputs.deploy == 'true'
         run: |
           echo "Deploying Application"
