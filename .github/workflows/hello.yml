@@ -1,14 +1,15 @@
-name: Composite Action Lab
+name: Environment Lab
 
 on:
   workflow_dispatch:
 
 jobs:
-  test:
+  deploy-dev:
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
+    environment:
+      name: dev
 
-      - name: Run Custom Action
-        uses: ./.github/actions/hello-action
+    steps:
+      - run: |
+          echo "Deploying to DEV"
