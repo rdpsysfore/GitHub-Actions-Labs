@@ -1,4 +1,4 @@
-name: Release Details
+name: Release Package
 
 on:
   release:
@@ -6,19 +6,15 @@ on:
       - published
 
 jobs:
-  info:
+  package:
     runs-on: ubuntu-latest
 
     steps:
+
       - run: |
-          echo "Tag:"
-          echo "${{ github.event.release.tag_name }}"
+          echo "Application Package" > app.txt
 
-          echo "Release Name:"
-          echo "${{ github.event.release.name }}"
-
-
-
-
-
-          
+      - uses: actions/upload-artifact@v4
+        with:
+          name: release-package
+          path: app.txt
