@@ -1,25 +1,14 @@
-name: Multi Environment
+name: Release Workflow
 
 on:
-  workflow_dispatch:
+  release:
+    types:
+      - published
 
 jobs:
-  deploy-dev:
+  release-job:
     runs-on: ubuntu-latest
 
-    environment:
-      name: dev
-
     steps:
-      - run: echo "Deploy DEV"
-
-  deploy-prod:
-    needs: deploy-dev
-
-    runs-on: ubuntu-latest
-
-    environment:
-      name: prod
-
-    steps:
-      - run: echo "Deploy PROD"
+      - run: |
+          echo "Release Published"
