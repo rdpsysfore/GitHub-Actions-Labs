@@ -1,4 +1,4 @@
-name: Release Workflow
+name: Release Details
 
 on:
   release:
@@ -6,17 +6,13 @@ on:
       - published
 
 jobs:
-  release-job:
+  info:
     runs-on: ubuntu-latest
 
     steps:
       - run: |
-          echo "Release Published"
+          echo "Tag:"
+          echo "${{ github.event.release.tag_name }}"
 
-
-          
-
-
-
-
-          
+          echo "Release Name:"
+          echo "${{ github.event.release.name }}"
