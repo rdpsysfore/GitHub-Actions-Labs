@@ -1,16 +1,64 @@
-name: Version Info
+name: Docker Complete Pipeline
 
 on:
   workflow_dispatch:
 
+env:
+  IMAGE_NAME: github-actions-lab
+
 jobs:
-  version:
+
+  docker-pipeline:
+
     runs-on: ubuntu-latest
 
     steps:
-      - run: |
-          echo "Repository:"
-          echo "${{ github.repository }}"
 
-          echo "Run Number:"
-          echo "${{ github.run_number }}"
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Display Build Information
+        run: |
+          echo "Repository : ${{ github.repository }}"
+          echo "Run Number : ${{ github.run_number }}"
+          echo "Actor      : ${{ github.actor }}"
+
+      - name: Build Docker Image
+        run: |
+          docker build \
+            -t $IMAGE_NAME:${{ github.run_number }} .
+
+      - name: Verify Docker Image
+        run: |
+          docker images
+
+      - name: Run Docker Container
+        run: |
+          docker run --rm \
+            $IMAGE_NAME:${{ github.run_number }}
+
+      - name: Login To Docker Hub
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | \
+          docker login \
+          -u "${{ secrets.DOCKER_USERNAME }}" \
+          --password-stdin
+
+      - name: Tag Docker Image
+        run: |
+          docker tag \
+          $IMAGE_NAME:${{ github.run_number }} \
+          ${{ secrets.DOCKER_USERNAME }}/$IMAGE_NAME:${{ github.run_number }}
+
+      - name: Verify Tagged Image
+        run: |
+          docker images
+
+      - name: Push Docker Image
+        run: |
+          docker push \
+          ${{ secrets.DOCKER_USERNAME }}/$IMAGE_NAME:${{ github.run_number }}
+
+      - name: Success Message
+        run: |
+          echo "Docker Pipeline Completed Successfully"
