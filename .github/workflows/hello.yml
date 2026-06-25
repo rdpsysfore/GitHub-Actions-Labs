@@ -16,3 +16,9 @@ jobs:
 
           echo "Release Name:"
           echo "${{ github.event.release.name }}"
+
+
+
+
+
+          
